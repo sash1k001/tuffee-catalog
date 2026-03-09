@@ -63,6 +63,21 @@ export class ProductsService {
         });
     }
 
+    async findByIds(ids: number[]): Promise<Product[]> {
+        const products = await this.prisma.product.findMany({
+            where: {
+                id: {
+                    in: ids,
+                },
+            },
+            include: {
+                category: true,
+            },
+        });
+
+        return products;
+    }
+
     async findOne(id: number): Promise<Product> {
         const product = await this.prisma.product.findUnique({
             where: { id },
