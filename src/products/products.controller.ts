@@ -34,7 +34,7 @@ export class ProductsController {
     }
 
     @MessagePattern({ cmd: 'products.find_by_ids'})
-    async getProductsByIds(@Payload() data: { ids: number[] }) {
+    async findProductsByIds(@Payload() data: { ids: number[] }) {
         return this.productsService.findByIds(data.ids);
     }
 
